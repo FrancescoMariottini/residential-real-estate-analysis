@@ -28,7 +28,7 @@ Terrace (Yes/No)|terrace|bool||
 Terrace Area|terrace_area|int||
 Garden (Yes/No)|garden|bool||
 Garden Area|garden_area|int||
-Surface of the land|land_surface|int|group 1: Buildable floor surface|
+Surface of the land|land_surface|int||
 Surface area of the plot of land|land_plot_surface|int||
 Number of facades|facades_number|int||
 Swimming pool (Yes/No)|swimming_pool_has|bool||
