@@ -9,9 +9,9 @@ The real estate company "ImmoEliza" wants to create a machine learning model to 
 ## Features 
 The dataset holds the following information.
 
-information|column name|variable type|example(s)
+information|column name|variable type|example(s) or description
 ---|---|---|---
-Source (team)|source|str|groups names to be agreed|
+Source (team)|source|str|avoid overlaps with the other groups|
 Hyperlink|hyperlink|str||
 Locality|locality|str||
 Postcode|postcode|int||
