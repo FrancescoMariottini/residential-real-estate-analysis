@@ -45,47 +45,24 @@ TBD
 - Binary values replacing "Yes" or "Not" 
 
 # Who did the project (Who):
-Contributors : Philippe Fimmers (PF), Francesco Mariottini (FM), Opap's Ditudidi (OD)
+Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON), Saba Yahyaa (SY)
 
 # Development (How)
-First brainstorm identified four main independent modules:
-1. Scrapping links of valid search results from Immoweb (PF & OD ).
-    * Input: search hyperlinks (one per results page).
-    * Output: hyperlinks, type of property and postcode.
-1. Scrapping required information from each building (PF & OD).
-    * Input: building hyperlink (one per house/apartment).
-    * Output: scrapped building parameters and values.
-1. Cleaning result through quality checks (FM).
-    * Input: building parameters and values as dictionary of lists.
-    * Output: full table (dataframe) including checks and cleaned table.
-4. Filling founded parameters into a csv (FM).
-
-OD started (1) after realising challenge of scrapping building results through only BeautifulSoup function. PF found a solution to it by using Selenium and reviewed both (1) and (2) with the help of OP.
-FM worked independently on (3) and (4).
-
-## Links scrapping development (How)
-Since the single building page provides information only about the subtype, and not if it is an house or an apartment, it was agreed to check the type of property parameter (house_is) was checked during module (1). 
-
-## Data cleaning development (How)
-Data cleaning development initially includes only general cases and testing was performed on a small generated dataset since scrapped building information were initially not available. 
-A preliminary analysis on the research engine showed frequent not filled parameters and a few inconsistencies in the datasets, i.e.count of True and False values higher than the number of values provided when launching an unfiltered search (e.g. presence of garden). 
-Due to time pressure these issues were not investigated immediately but delayed until the overall dataframe analysis.
-(3) was progressively extended based on the received (2) outputs to comply with project requirements.
-Since data type manipulation wasn't performed for all the parameters during (2), handling of exceptions and instances as well as a formatting function was added to (3) to cope with it.
-True and False values were replaced by 0 and 1 only when running the dataframe describe function to provide meaningful results.
+TBD
+First agreed on dataset column names and variable types.
 
 ## Take over
+TBD
 1. Input(s) and output(s) must be fully clarified and agreed when working independently on modules.
 1. A clearer workflow, including responsibilities and deadlines, could help to make coding more effective.
 1. Every team members should be able to run the used packages to allow also parallel testing
 1. Previous training necessary to effectively code and support team members.
 
 # Collecting Data (When)
-- Repository: `challenge-collecting-data`
-- Type of Challenge: `Consolidation`
-- Duration: `3 days * 3 people` (officially) but additional out of work time spent  `at least 1 day * 1 person`
-- Deadline: `25/09/2020 17:00`, postponed to `28/09/2020 17:00`
-- Team challenge : 3
+- Repository: `project3`
+- Type of Challenge: `data visualisation`
+- Duration: `3 days * 3 people` 
+- Deadline: `23/10/2020 17:00`
 
 
 
