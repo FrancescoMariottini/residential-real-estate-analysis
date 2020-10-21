@@ -37,6 +37,7 @@ State of the building|building_state|str|(New, to be renovated, ...)
 Everything in a csv file.
 
 ## Highlights
+TBD
 - Data for all of Belgium.
 - Minimum 10 000 inputs
 - No empty row. If information is missing, the value is set to None.
