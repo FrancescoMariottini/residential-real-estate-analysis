@@ -11,7 +11,7 @@ The dataset holds the following information.
 
 information|column name|variable type|example(s)
 ---|---|---|---
-Source(team)|source|str|groups names to be agreed|
+Source (team)|source|str|groups names to be agreed|
 Hyperlink|hyperlink|str||
 Locality|locality|str||
 Postcode|postcode|int||
