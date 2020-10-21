@@ -11,7 +11,7 @@ The dataset holds the following information.
 
 information|column name|variable type|example(s) or description
 ---|---|---|---
-Source (team)|source|int|avoid overlaps with the other groups <br> a|
+Source (team)|source|int|avoid overlaps with the other groups <br> 1 : Didier - Sravanthi - Mikael <br> 2 : Abdelilah - Naomi - Manasa <br> 3 : Ankita - Adam - Selma <br> 4 : Joachim - Sara - Emre <br> 5 : Dilara - Saba - Christophe G <br> 6 : Orhan - Christophe S. - Davy <br> 7 : Philippe - Francesco - Opaps|
 Hyperlink|hyperlink|str||
 Locality|locality|str||
 Postcode|postcode|int||
