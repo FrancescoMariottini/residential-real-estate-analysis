@@ -19,7 +19,7 @@ Type of property (House/apartment)|house_is|bool|||
 Subtype of property|property_subtype|str|Bungalow, Chalet, Mansion, ...||
 Price|price|int|||
 Type of sale (Exclusion of life sales)|sale|str||
-Number of rooms|rooms_number|int||
+Number of rooms|rooms_number|int||group 1: number of bedrooms has used as number of rooms
 Area|area|int||
 Fully equipped kitchen (Yes/No)|kitchen_has|bool||
 Furnished (Yes/No)|furnished|bool||
