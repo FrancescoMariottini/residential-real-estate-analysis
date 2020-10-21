@@ -1,9 +1,9 @@
 # "Collecting real estate sales in Belgium" (What)
-TBS
+TBD
 A tool to scrap real estate sales data from Belgium to obtain a valuable insight of the real estate market.
 
 # The Mission (Why)
-TBS
+TBD
 The real estate company "ImmoEliza" wants to create a machine learning model to make price predictions on real estate sales in Belgium. 
 
 ## Features 
