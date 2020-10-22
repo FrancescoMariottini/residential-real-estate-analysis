@@ -15,6 +15,19 @@ new_df = df[df['property_subtype'].apply(
 new_df = new_df[new_df['property_subtype'].apply(lambda x: "sqft" not in x)]
 new_df = new_df[new_df['property_subtype'].apply(
     lambda x: x not in del_subtype)]
+# print(new_df['property_subtype'].unique())
+# to_renovate = ['TO_RENOVATE',  'TO_BE_DONE_UP', 'TO_RESTORE', 'old',
+#                'To renovate', 'To be done up', 'To restore']
+# good = ['GOOD',  'Good', 'AS_NEW', 'As new', ]
+# just_renovated = ['JUST_RENOVATED', 'Just renovated']
+# new = ['New']
+# nan = ['0']
+# df['new_building_state'] = df['building_state'].apply(
+#     lambda x: "To renovate" if x in to_renovate else
+#     ("Good" if x in good else
+#      ("Just renovated" if x in just_renovated else
+#       ("New" if x in new else None))))
+
 
 # # 2- Done... ----- sale -----   # , na=False solved confusing about float
 new_df = new_df[~new_df['sale'].str.contains('annuity', na=False)]
@@ -37,6 +50,16 @@ df['new_building_state'] = df['building_state'].apply(
     ("Good" if x in good else
      ("Just renovated" if x in just_renovated else
       ("New" if x in new else None))))
+---------------------------------------------------------------------------------------
+# # 5- Done... ----- region -----
+# DO NOT DELETE THIS LINE owner is SARA df.loc[("To be done up" == df['building_state']),"building_state"] = "To_renovate"
+waloon = np.arange(1300, 1500).tolist() + np.arange(4000, 8000).tolist()
+flanders = np.arange(1500, 4000).tolist() + np.arange(8000, 10000).tolist()
+brussels = np.arange(1000, 1300).tolist()
+df['region'] = df['postcode'].apply(
+    lambda x: "W" if x in waloon else("F" if x in flanders else "B"))
+# ---------------------------------------------------------------------------------------
+
 
 # anvers = loc.str.contains('Anvers')
 
