@@ -6,6 +6,36 @@ class SalesDataCleaner:
     def __init__(self, url):
         self.url = url
         self.import_and_format()
+        
+        self.cleaned = False
+    
+    def clean(self):
+        if not self.cleaned:
+            self.import_and_format()
+
+            # print(self.sales_data.dtypes)
+
+            self.delete_hyperlink_column()
+            self.delete_land_plot_surface_column()
+
+            # self.merge_postcodes_localities_columns()
+
+            # self.clean_house_subtype_column()
+
+            # self.clean_sale_column()
+
+            # self.clean_building_state_column()
+
+            self.clean_price_column()
+
+            # self.display()
+
+            # print(self.sales_data.dtypes)
+            
+
+
+            #now that the cleaning is done we update the corresponding binary tag
+            self.cleaned = True
     
 
     def import_and_format(self):
@@ -180,13 +210,16 @@ class SalesDataCleaner:
     
 
     def clean_price_column(self):
-        c = 0
-        f = open('out.txt', 'w')
-        for i,v in self.sales_data['price'].items():
-            f.write(str(v)+'\n')
-            c += 1
-        f.close()
-        print(c)
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+        
+        # c = 0
+        # f = open('out.txt', 'w')
+        # for i,v in self.sales_data['price'].items():
+        #     f.write(str(v)+'\n')
+        #     c += 1
+        # f.close()
+        # print(c)
 
 ##############################################################################################
     def clean_garden_column(self):
