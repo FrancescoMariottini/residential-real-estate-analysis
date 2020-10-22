@@ -12,12 +12,14 @@ sdc.delete_land_plot_surface_column()
 
 # sdc.merge_postcodes_localities_columns()
 
-# sdc.process_house_subtype_column()
+# sdc.clean_house_subtype_column()
 
-# sdc.process_sale_column()
+# sdc.clean_sale_column()
 
-sdc.process_building_state_column()
+# sdc.clean_building_state_column()
+
+sdc.clean_price_column()
 
 # sdc.display()
 
-print(sdc.sales_data.dtypes)
+# print(sdc.sales_data.dtypes)

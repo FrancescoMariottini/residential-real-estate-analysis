@@ -10,35 +10,36 @@ class SalesDataCleaner:
 
     def import_and_format(self):
         columns_types = {
-            "source":               int,
-            "hyperlink":            str,
-            "locality":             str,
-            "postcode":             str,
-            "house_is":             bool,
-            "property_subtype":     str,
-            "sale":                 str,
-            "rooms_number":         float, #cannot convert float NaN to integer
-            "garden_area":          float, #ValueError: Integer column has NA values in column 16
-            "land_surface":         float,
-            "facades_number":       float, #changed to float to deal with None
-            "building_state":       str
+            'source':               int,
+            'hyperlink':            str,
+            'locality':             str,
+            'postcode':             str,
+            'house_is':             bool,
+            'property_subtype':     str,
+            'sale':                 str,
+            'rooms_number':         float, #cannot convert float NaN to integer
+            'garden_area':          float, #ValueError: Integer column has NA values in column 16
+            'land_surface':         float,
+            'facades_number':       float, #changed to float to deal with None
+            'building_state':       str,
+            # 'price':                int
         }
 
         columns_converters = {
             #read_csv has issue with None in Boolean (interpreted as object). I am using "kitchen_has": lambda x: bool(x) if type(x) is bool else Non
-            "kitchen_has": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "furnished": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "open_fire": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "terrace": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "garden": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "swimming_pool_has": lambda x: SalesDataCleaner.bool_or_keep(x),
-            "terrace_area": lambda x: SalesDataCleaner.float_or_zero(x),
-            "land_plot_surface": lambda x: SalesDataCleaner.float_or_text_to_nan(x),
-            "area": lambda x: SalesDataCleaner.area_remove_m2(x)
+            'kitchen_has': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'furnished': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'open_fire': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'terrace': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'garden': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'swimming_pool_has': lambda x: SalesDataCleaner.bool_or_keep(x),
+            'terrace_area': lambda x: SalesDataCleaner.float_or_zero(x),
+            'land_plot_surface': lambda x: SalesDataCleaner.float_or_text_to_nan(x),
+            'area': lambda x: SalesDataCleaner.area_remove_m2(x)
         }
 
         columns = columns_types.keys()
-        na_identifiers = ["NA","None", "Not specified", "NaN", "NAN"]
+        na_identifiers = ['NA', 'None', 'Not specified', 'NaN', 'NAN']
 
         self.sales_data = pd.read_csv(self.url,  sep=",", dtype=columns_types, skipinitialspace=True, converters=columns_converters, na_values=na_identifiers, low_memory=False)
 
@@ -47,9 +48,9 @@ class SalesDataCleaner:
         output = None
         try:
             if isinstance(x, str):
-                if (x == "1") or (x.upper() == "TRUE"):
+                if (x == '1') or (x.upper() == 'TRUE'):
                     output = True
-                elif (x == "0") or (x.upper() == "FALSE"):
+                elif (x == '0') or (x.upper() == 'FALSE'):
                     output = False
             elif x.isnumeric():
                 if x == 1:
@@ -69,7 +70,7 @@ class SalesDataCleaner:
             return float(x)
         except ValueError:
             #keeping information of terrace if lost
-            if x == True or x == 1 or x == "True" or x == "TRUE":
+            if x == True or x == 1 or x == 'True' or x == 'TRUE':
                 return 0
             else:
                 return None
@@ -115,13 +116,12 @@ class SalesDataCleaner:
         else:
             row.postcode = str(int(row.postcode))
         return row
-    
 
     def merge_postcodes_localities_columns(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
         self.sales_data.drop('locality', axis='columns', inplace=True)
 
-    def process_house_subtype_column(self):
+    def clean_house_subtype_column(self):
         to_be_deleted_subtypes = ['Wohnung', 'Triplexwohnung', 'Sonstige', 'Loft / �tico', 'Loft / Dachgeschoss', 'Loft / Attic',
                'Gewerbe', 'Etagenwohnung', 'Erdgeschoss', 'Attico', 'Appartamento duplex', 'Apartamento', 'Altbauwohnung']
 
@@ -134,7 +134,7 @@ class SalesDataCleaner:
         to_be_deleted_filter = self.sales_data['property_subtype'].apply(lambda x: "sqft" in str(x))
         self.sales_data['property_subtype'][to_be_deleted_filter] = None
     
-    def process_sale_column(self):
+    def clean_sale_column(self):
         to_be_deleted_filter = self.sales_data['sale'].str.contains('annuity', na=False)
 
         num_to_delete = len(self.sales_data['sale'][to_be_deleted_filter])
@@ -149,7 +149,7 @@ class SalesDataCleaner:
         good = ['GOOD', 'Good', 'AS_NEW', 'As new']
         renovated = ['JUST_RENOVATED', 'Just renovated']
         new = ['New']
-        category = None #default category (corrsponds to values = '0')
+        category = None #default category (corresponds to values = '0')
         if value in to_renovate:
             category = 'to_renovate'
         elif value in good:
@@ -160,7 +160,7 @@ class SalesDataCleaner:
             category = 'new'
         return category
     
-    def process_building_state_column(self):
+    def clean_building_state_column(self):
         self.sales_data['building_state_aggregate'] = self.sales_data['building_state'].apply(SalesDataCleaner.categorize_state)
         # c = 0
         # for i,v in self.sales_data['building_state'].items():
@@ -177,34 +177,82 @@ class SalesDataCleaner:
         # for i,v in self.sales_data['building_state_aggregate'].items():
         #     f.write(str(i)+'\t'+str(self.sales_data['building_state'][i])+'\t\t\t\t'+str(self.sales_data['building_state_aggregate'][i])+'\n')
         # f.close()
-
-    def process_garden_column(self):
-        #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
     
-    def process_kitchen_column(self):
+
+    def clean_price_column(self):
+        c = 0
+        f = open('out.txt', 'w')
+        for i,v in self.sales_data['price'].items():
+            f.write(str(v)+'\n')
+            c += 1
+        f.close()
+        print(c)
+
+##############################################################################################
+    def clean_garden_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
         print()
 
-    def process_furnished_column(self):
+    def clean_garden_area_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
         print()
+        # to_be_deleted_filter = self.sales_data['garden_area'].apply(lambda x: pd.isna(x))
+        # self.sales_data['garden_area'][to_be_deleted_filter] = None
 
-    def process_open_fire_column(self):
-        #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
-
-    def process_terrace_column(self):
-        #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
-
-    def process_swimming_pool_column(self):
-        #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
-    
-    
         # c = 0
-        # for i,v in self.sales_data['property_subtype'].items():
-        #     if v is None:
+        # for i,v in self.sales_data['garden_area'].items():
+        #     if pd.isna(v):
+        #         # print(v)
         #         c += 1
         # print(c)
+
+    def clean_terrace_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_terrace_area_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+##############################################################################################
+    
+    def clean_area_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+        # c = 0
+        # for i,v in self.sales_data['area'].items():
+        #     if pd.isna(v):
+        #         c += 1
+        # print(c)
+
+        # f = open('out.txt', 'w')
+        # for i,v in self.sales_data['area'].items():
+        #     f.write(str(v)+'\n')
+        # f.close()
+
+    def clean_facades_number_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+    
+    def clean_rooms_number_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_land_surface_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_kitchen_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_furnished_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_open_fire_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def clean_swimming_pool_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
