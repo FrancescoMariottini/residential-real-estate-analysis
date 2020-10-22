@@ -40,7 +40,7 @@ class SalesDataCleaner:
         columns = columns_types.keys()
         na_identifiers = ["NA","None", "Not specified", "NaN", "NAN"]
 
-        self.sales_data = pd.read_csv(url,  sep=",", dtype=columns_types, skipinitialspace=True, converters=columns_converters, na_values=na_identifiers, low_memory=False)
+        self.sales_data = pd.read_csv(self.url,  sep=",", dtype=columns_types, skipinitialspace=True, converters=columns_converters, na_values=na_identifiers, low_memory=False)
 
     @staticmethod
     def bool_or_keep(x):
@@ -58,6 +58,7 @@ class SalesDataCleaner:
                     output = False
             elif isinstance(x, bool):
                 output = x
+            return output
         except ValueError:
             return None
 
@@ -72,6 +73,7 @@ class SalesDataCleaner:
                 return 0
             else:
                 return None
+    
     @staticmethod
     def float_or_text_to_nan(x):
         try:
@@ -95,9 +97,11 @@ class SalesDataCleaner:
     def display(self):
         print(self.sales_data)
 
-    @staticmethod
-    def delete_hyperlinks(self):
+    def delete_hyperlink_column(self):
         self.sales_data.drop('hyperlink', axis='columns', inplace=True)
+
+    def delete_land_plot_surface_column(self):
+        self.sales_data.drop('land_plot_surface', axis='columns', inplace=True)
 
     @staticmethod
     def extract_postcodes(row):
@@ -107,27 +111,37 @@ class SalesDataCleaner:
             if len(extracted_postcodes) > 0:
                 row.postcode = str(int(extracted_postcodes[0]))
             else:
-                row.postcode = np.nan
+                row.postcode = None
         else:
             row.postcode = str(int(row.postcode))
         return row
     
 
-    def merge_postcodes_localities(self):
+    def merge_postcodes_localities_columns(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
         self.sales_data.drop('locality', axis='columns', inplace=True)
 
-    def process_house_subtypes(self):
-        print(self.sales_data.property_subtype.unique())
+    def process_house_subtype_column(self):
+        to_be_deleted_subtypes = ['Wohnung', 'Triplexwohnung', 'Sonstige', 'Loft / �tico', 'Loft / Dachgeschoss', 'Loft / Attic',
+               'Gewerbe', 'Etagenwohnung', 'Erdgeschoss', 'Attico', 'Appartamento duplex', 'Apartamento', 'Altbauwohnung']
 
-
-
-url = 'https://raw.githubusercontent.com/FrancescoMariottini/project3/main/inputs/all_sales_data.csv'
-sdc = SalesDataCleaner(url)
-sdc.display()
-print(sdc.sales_data.dtypes)
-# sdc.delete_hyperlinks()
-# sdc.merge_postcodes_localities()
-# # sdc.display()
-# sdc.process_house_subtypes()
-
+        to_be_deleted_filter = self.sales_data['property_subtype'].apply(lambda x: x in to_be_deleted_subtypes)
+        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+        
+        to_be_deleted_filter = self.sales_data['property_subtype'].apply(lambda x: type(x) in [int, float])
+        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+        
+        to_be_deleted_filter = self.sales_data['property_subtype'].apply(lambda x: "sqft" in str(x))
+        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+    
+    def process_sale_column(self):
+        to_be_deleted_filter = self.sales_data['sale'].str.contains('annuity', na=False)
+        print(type(to_be_deleted_filter))
+        print(len(self.sales_data['sale'][to_be_deleted_filter]))
+        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+        
+        # c = 0
+        # for i,v in self.sales_data['property_subtype'].items():
+        #     if self.sales_data['property_subtype'][i] is None:
+        #         c += 1
+        # print(c)
