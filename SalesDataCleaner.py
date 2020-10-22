@@ -10,9 +10,12 @@ class SalesDataCleaner:
     def display(self):
         print(self.sales_data)
 
+    def delete_hyperlinks(self):
+        self.sales_data = self.sales_data.drop('hyperlink', axis='columns')
+
     def merge_postcodes_localities(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
-        self.sales_data = self.sales_data.drop('locality', axis='columns')
+        self.sales_data.drop('locality', axis='columns', inplace=True)
 
     @staticmethod
     def extract_postcodes(row):
@@ -28,5 +31,6 @@ class SalesDataCleaner:
 
 url = 'https://raw.githubusercontent.com/FrancescoMariottini/project3/main/inputs/all_sales_data.csv'
 sdc = SalesDataCleaner(url)
+sdc.delete_hyperlinks()
 sdc.merge_postcodes_localities()
 sdc.display()
