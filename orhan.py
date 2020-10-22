@@ -24,6 +24,28 @@ new_df['garden'] = new_df['garden'].map(
     lambda x: x if x == 'True' or x == 'False' else np.nan)
 #
 
+# # 4- Done... ----- building_state -----
+# DO NOT DELETE THIS LINE owner is SARA df.loc[("To be done up" == df['building_state']),"building_state"] = "To_renovate"
+to_renovate = ['TO_RENOVATE',  'TO_BE_DONE_UP', 'TO_RESTORE', 'old',
+               'To renovate', 'To be done up', 'To restore']
+good = ['GOOD',  'Good', 'AS_NEW', 'As new', ]
+just_renovated = ['JUST_RENOVATED', 'Just renovated']
+new = ['New']
+nan = ['0']
+df['new_building_state'] = df['building_state'].apply(
+    lambda x: "To renovate" if x in to_renovate else
+    ("Good" if x in good else
+     ("Just renovated" if x in just_renovated else
+      ("New" if x in new else None))))
+
+# anvers = loc.str.contains('Anvers')
+
+# df['new_column_building_state'] = np.where(brussels, 'Brussels',
+#                                            np.where(anvers, 'Anvers',
+#                                                     loc.str.replace('-', ' ')))
+
+# new_df = new_df[~new_df['sale'].str.contains('annuity', na=False)]
+
 
 # ------ RULES of CLEANING DataSets ---------
 # 1 - Messy Datasets
