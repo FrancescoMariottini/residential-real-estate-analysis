@@ -7,18 +7,22 @@ df = pd.read_csv(url)
 print(df)
 print(df.dtypes)
 # # 1- Done... ----------------- property_subtype  ----------------------
-# print(df.property_subtype.unique())  # check all distinc data in the row
-# # -----if the column exist this text delete that line because that records are abroud
-# del_subtype = ['Wohnung', 'Triplexwohnung', 'Sonstige', 'Loft / �tico', 'Loft / Dachgeschoss', 'Loft / Attic','Gewerbe', 'Etagenwohnung', 'Erdgeschoss', 'Attico', 'Appartamento duplex', 'Apartamento', 'Altbauwohnung']
-# new_df = df[df['property_subtype'].apply(lambda x: type(x) not in [int, float])]
-# new_df = new_df[new_df['property_subtype'].apply(lambda x: "sqft" not in x)]
-# new_df = new_df[new_df['property_subtype'].apply(lambda x: x not in del_subtype)]
+print(df.property_subtype.unique())  # check all distinc data in the row
+# -----if the column exist this text delete that line because that records are abroud
+del_subtype = ['Wohnung', 'Triplexwohnung', 'Sonstige', 'Loft / �tico', 'Loft / Dachgeschoss', 'Loft / Attic',
+               'Gewerbe', 'Etagenwohnung', 'Erdgeschoss', 'Attico', 'Appartamento duplex', 'Apartamento', 'Altbauwohnung']
+new_df = df[df['property_subtype'].apply(
+    lambda x: type(x) not in [int, float])]
+new_df = new_df[new_df['property_subtype'].apply(lambda x: "sqft" not in x)]
+new_df = new_df[new_df['property_subtype'].apply(
+    lambda x: x not in del_subtype)]
 #
 # # 2- Done... ----------------- sale ----------------------
-# print(df.sale.unique())  # check all distinc data in the row
-# # USE new_df INSTEAD OF df WHEN YOU MERGE PROCESSES ABOVE
-# # , na=False solved confusing about float
-# new_df = df[~df['sale'].str.contains('annuity', na=False)]
+print(new_df.sale.unique())  # check all distinc data in the row
+# USE new_df INSTEAD OF df WHEN YOU MERGE PROCESSES ABOVE
+# , na=False solved confusing about float
+new_df = new_df[~new_df['sale'].str.contains('annuity', na=False)]
+print(new_df)
 # #
 
 # ------ RULES of CLEANING DataSets ---------
