@@ -136,12 +136,75 @@ class SalesDataCleaner:
     
     def process_sale_column(self):
         to_be_deleted_filter = self.sales_data['sale'].str.contains('annuity', na=False)
-        print(type(to_be_deleted_filter))
-        print(len(self.sales_data['sale'][to_be_deleted_filter]))
-        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+
+        num_to_delete = len(self.sales_data['sale'][to_be_deleted_filter])
+        print(num_to_delete)
+        # self.sales_data['property_subtype'][to_be_deleted_filter] = pd.Series([None]*num_to_delete)
         
+        self.sales_data['property_subtype'][to_be_deleted_filter] = None
+
+    @staticmethod
+    def categorize_state(value):
+        to_renovate = ['TO_RENOVATE', 'TO_BE_DONE_UP', 'TO_RESTORE', 'old', 'To renovate', 'To be done up', 'To restore']
+        good = ['GOOD', 'Good', 'AS_NEW', 'As new']
+        renovated = ['JUST_RENOVATED', 'Just renovated']
+        new = ['New']
+        category = None #default category (corrsponds to values = '0')
+        if value in to_renovate:
+            category = 'to_renovate'
+        elif value in good:
+            category = 'good'
+        elif value in renovated:
+            category = 'renovated'
+        elif value in  new:
+            category = 'new'
+        return category
+    
+    def process_building_state_column(self):
+        self.sales_data['building_state_aggregate'] = self.sales_data['building_state'].apply(SalesDataCleaner.categorize_state)
+        # c = 0
+        # for i,v in self.sales_data['building_state'].items():
+        #     if pd.isna(v):
+        #         c += 1
+        # print(c)
+        # c = 0
+        # for i,v in self.sales_data['building_state_aggregate'].items():
+        #     if pd.isna(v):
+        #         c += 1
+        # print(c)
+
+        # f = open('out.txt', 'w')
+        # for i,v in self.sales_data['building_state_aggregate'].items():
+        #     f.write(str(i)+'\t'+str(self.sales_data['building_state'][i])+'\t\t\t\t'+str(self.sales_data['building_state_aggregate'][i])+'\n')
+        # f.close()
+
+    def process_garden_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+    
+    def process_kitchen_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def process_furnished_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def process_open_fire_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def process_terrace_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+
+    def process_swimming_pool_column(self):
+        #nothing to do: everything is taken care of by Francesco's "formatted import"
+        print()
+    
+    
         # c = 0
         # for i,v in self.sales_data['property_subtype'].items():
-        #     if self.sales_data['property_subtype'][i] is None:
+        #     if v is None:
         #         c += 1
         # print(c)

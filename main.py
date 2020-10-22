@@ -14,7 +14,9 @@ sdc.delete_land_plot_surface_column()
 
 # sdc.process_house_subtype_column()
 
-sdc.process_sale_column()
+# sdc.process_sale_column()
+
+sdc.process_building_state_column()
 
 # sdc.display()
 
