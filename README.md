@@ -97,7 +97,7 @@ Swimming pool (Yes/No)|swimming_pool_has|bool|
 State of the building|building_state|str|(New, to be renovated, ...)
 
 ## Data interpretation
-
+TBD
 
 # Future improvements 
 TBD
