@@ -25,39 +25,48 @@ Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON),
 
 # Development (How)
 
+## Communication and Management
+Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person adding indipendently the labels and tasks as well as involving other team members on them.
+
 ## Merging datasets from different sources (How)
 Different indipendent teams worked on a merged dataset to be used by all the team.
-On the first day CUDA team splitted the sources (5 was excluded not being good enough) as follows: JK worked on source 3 and 4, FM worked on source 1 and 7, ON worked on source 2, 3 and 6. Group 3 required collaboration. Additional cleaning work was carried on the 22/10/20 by JK to improve the merged dataset for all the teams.
+On the first day (21/10/20) CUDA team splitted the sources (5 was excluded not being good enough) as follows: JK worked on source 3 and 4, FM worked on source 1 and 7, ON worked on source 2, 3 and 6. Group 3 required collaboration. Additional cleaning work was carried on the 22/10/20 by JK to improve the merged dataset for all the teams.
 
 ## Pycharm & Github training (How)
 At least 2 person days were spent on technical teaching (and installation) and clarifications about pycharm (FM), git (FM, JK) and statistics (FM) to allow everybody to work on the project. Additional self-training was spent by SY on understanding and replicating the code already developed by the team.
 
-## Data cleaning (How)
+## Data formatting and cleaning (How)
+Data cleaning was splitted into two main groups: initial formatting for similar types of columns (FM) and additional specific formatting for particularly complex cleaning.
+FM toke reponsibility for the overall cleaning including: formatting to the required types, identification of string representing na (and replacement by na)
 
-information|column name|variable type|example(s) or description|notes
----|---|---|---|---
-Source (team)|source|int|avoid overlaps with the other groups <br> 1 : Didier - Sravanthi - Mikael <br> 2 : Abdelilah - Naomi - Manasa <br> 3 : Ankita - Adam - Selma <br> 4 : Joachim - Sara - Emre <br> 5 : Dilara - Saba - Christophe G <br> 6 : Orhan - Christophe S. - Davy <br> 7 : Philippe - Francesco - Opaps||
-Hyperlink|hyperlink|str|||
-Locality|locality|str|||
-Postcode|postcode|int|||
-Type of property (House/apartment)|house_is|bool|||
-Subtype of property|property_subtype|str|Bungalow, Chalet, Mansion, ...||
-Price|price|int|||
-Type of sale (Exclusion of life sales)|sale|str||
-Number of rooms|rooms_number|int||group 1: number of bedrooms
-Area|area|int||
-Fully equipped kitchen (Yes/No)|kitchen_has|bool||
-Furnished (Yes/No)|furnished|bool||
-Open fire (Yes/No)|open_fire|bool||
-Terrace (Yes/No)|terrace|bool||
-Terrace Area|terrace_area|int||
-Garden (Yes/No)|garden|bool||
-Garden Area|garden_area|int||
-Surface of the land|land_surface|int||
-Surface area of the plot of land|land_plot_surface|int||
-Number of facades|facades_number|int||
-Swimming pool (Yes/No)|swimming_pool_has|bool||
-State of the building|building_state|str|(New, to be renovated, ...)|
+The resulting dataset was the following:
+information|column name|variable type|example(s) or description
+---|---|---|---
+Source (team)|source|int|from 1 to 7|
+Hyperlink|hyperlink|str||
+Locality|locality|str||
+Postcode|postcode|int||
+Type of property (House/apartment)|house_is|bool||
+Subtype of property|property_subtype|str|Bungalow, Chalet, Mansion, ...|
+Price|price|int||
+Type of sale (Exclusion of life sales)|sale|str|
+Number of rooms|rooms_number|int|
+Area|area|int|
+Fully equipped kitchen (Yes/No)|kitchen_has|bool|
+Furnished (Yes/No)|furnished|bool|
+Open fire (Yes/No)|open_fire|bool|
+Terrace (Yes/No)|terrace|bool|
+Terrace Area|terrace_area|int|
+Garden (Yes/No)|garden|bool|
+Garden Area|garden_area|int|
+Surface of the land|land_surface|int|
+Surface area of the plot of land|land_plot_surface|int|
+Number of facades|facades_number|int|
+Swimming pool (Yes/No)|swimming_pool_has|bool|
+State of the building|building_state|str|(New, to be renovated, ...)
+
+## Code merging (How)
+JK toke sole responsibility for merging the code in order to effectively implement code from different sources (git and jupyter files) and eventually reviewing the code if necessary.
 
 
 
