@@ -46,8 +46,8 @@ Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
 - no showing of code or jupyter notebook
 
 ### Readme characteristics
-	- What, Why, When, How, Who.
-	- Pending things to do
+- What, Why, When, How, Who.
+- Pending things to do
   
 ### Evaluation criteria summary
 Hereby follow the criteria to be comply with
