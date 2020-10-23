@@ -35,9 +35,13 @@ class SalesDataCleaner:
 
             self.clean_property_subtype_column()
 
+            self.clean_price_column()
+
             self.clean_sale_column()
 
             self.delete_sale_column()
+
+            self.clean_area_column()
 
             self.clean_area_land_surface_columns()
 
@@ -48,6 +52,8 @@ class SalesDataCleaner:
             self.remove_na_records()
 
             self.sales_data.rename(columns={"kitchen_has": "equipped_kitchen_has"}, inplace=True)
+
+            self.clean_facades_number_column()
 
             self.display()
 
@@ -98,7 +104,7 @@ class SalesDataCleaner:
         x = re.sub(r'€(.|\D)*$', '', x)
         x = x.replace(',', '')
         #we expect only digits or a dot after replacing commas with an empty string, so we should be able to convert if
-        #if not possible we catch the exception
+        #if not possible we catch the exceptionproperty_subtype
         try:
             return float(x)
         except ValueError:
@@ -217,6 +223,11 @@ class SalesDataCleaner:
         
         to_be_deleted_filter = self.sales_data['property_subtype'].apply(lambda x: "sqft" in str(x))
         self.sales_data.loc[to_be_deleted_filter,'property_subtype'] = None
+    
+    def clean_price_column(self):
+        to_be_deleted_filter = self.sales_data['price'].apply(lambda x: x == 0.0)
+        self.sales_data.loc[to_be_deleted_filter,'price'] = None
+
 
     @staticmethod
     def categorize_state(value):
@@ -244,8 +255,17 @@ class SalesDataCleaner:
         to_delete_index = self.sales_data.index[to_be_deleted_filter]
         self.sales_data.drop(to_delete_index, axis='index', inplace = True)
     
+    def clean_area_column(self):
+        to_be_deleted_filter = self.sales_data['area'].apply(lambda x: x == 0.0)
+        self.sales_data.loc[to_be_deleted_filter,'area'] = None
+
+    
     def clean_area_land_surface_columns(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.copy_from_land_surface, axis='columns')
+    
+    def clean_facades_number_column(self):
+        to_be_deleted_filter = self.sales_data['facades_number'].apply(lambda x: x == 0 or x > 4)
+        self.sales_data.loc[to_be_deleted_filter,'facades_number'] = None
 
     @staticmethod
     def copy_from_land_surface(row):
