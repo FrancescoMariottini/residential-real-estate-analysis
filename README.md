@@ -1,13 +1,38 @@
 # "Collecting real estate sales in Belgium" (What)
-TBD
-A tool to scrap real estate sales data from Belgium to obtain a valuable insight of the real estate market.
+The real estate company "ImmoEliza" wants to create a machine learning model to predict prices on Belgium's sales.
+A complete analysis and interpretation of the dataset need to be provided. 
 
 # The Mission (Why)
-TBD
-The real estate company "ImmoEliza" wants to create a machine learning model to make price predictions on real estate sales in Belgium. 
+- Be able to use pandas
+- Be able to use Data visualisation libraries.(Matplotlib or Seaborn)
+- Be able to establish conclusions about a dataset. 
 
 ## Features 
 The dataset holds the following information.
+
+Everything in a csv file.
+
+## Highlights
+TBD
+- Data for all of Belgium.
+- Minimum 10 000 inputs
+- No empty row. If information is missing, the value is set to None.
+- No duplicates. 
+- Binary values replacing "Yes" or "Not" 
+
+# Who did the project (Who):
+Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON), Saba Yahyaa (SY)
+
+# Development (How)
+
+## Merging datasets from different sources (How)
+Different indipendent teams worked on a merged dataset to be used by all the team.
+On the first day CUDA team splitted the sources (5 was excluded not being good enough) as follows: JK worked on source 3 and 4, FM worked on source 1 and 7, ON worked on source 2, 3 and 6. Group 3 required collaboration. Additional cleaning work was carried on the 22/10/20 by JK to improve the merged dataset for all the teams.
+
+## Pycharm & Github training (How)
+At least 2 person days were spent on technical teaching (and installation) and clarifications about pycharm (FM), git (FM, JK) and statistics (FM) to allow everybody to work on the project. Additional self-training was spent by SY on understanding and replicating the code already developed by the team.
+
+## Data cleaning (How)
 
 information|column name|variable type|example(s) or description|notes
 ---|---|---|---|---
@@ -34,22 +59,7 @@ Number of facades|facades_number|int||
 Swimming pool (Yes/No)|swimming_pool_has|bool||
 State of the building|building_state|str|(New, to be renovated, ...)|
 
-Everything in a csv file.
 
-## Highlights
-TBD
-- Data for all of Belgium.
-- Minimum 10 000 inputs
-- No empty row. If information is missing, the value is set to None.
-- No duplicates. 
-- Binary values replacing "Yes" or "Not" 
-
-# Who did the project (Who):
-Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON), Saba Yahyaa (SY)
-
-# Development (How)
-TBD
-First agreed on dataset column names and variable types.
 
 ## Take over
 TBD
@@ -58,11 +68,13 @@ TBD
 1. Every team members should be able to run the used packages to allow also parallel testing
 1. Previous training necessary to effectively code and support team members.
 
+
+
 # Collecting Data (When)
-- Repository: `project3`
-- Type of Challenge: `data visualisation`
-- Duration: `3 days * 3 people` 
+- Repository: `challenge-data-analysis`
+- Type of Challenge: `Consolidation`
+- Duration: ``4 people * 3 days ` plus out of hours working
 - Deadline: `23/10/2020 17:00`
-
-
+- Presentation: `26/10/2020 9:00`
+- Team challenge : 4
 
