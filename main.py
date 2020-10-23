@@ -7,4 +7,4 @@ sdc = SalesDataCleaner(url)
 
 sdc.clean()
 
-sdc.write_to_csv('aaaa.csv')
+sdc.write_to_csv('clean_sales_dataset.csv')

@@ -5,15 +5,25 @@ import re
 class SalesDataCleaner:
     def __init__(self, url):
         self.url = url
-        self.import_and_format()
-        
+        self.sales_data = None
         self.cleaned = False
+
+    def get_cleaned_data(self):
+        if self.cleaned:
+            return self.sales_data.copy()
+        else:
+            return None
+    
+    def write_to_csv(self, filepath):
+        if self.cleaned:
+            self.sales_data.to_csv(filepath, index=False)
     
     def clean(self):
         if not self.cleaned:
-            print(self.sales_data.dtypes)
             
             self.import_and_format()
+
+            print(self.sales_data.dtypes)
 
             self.delete_hyperlink_column()
 
@@ -33,9 +43,11 @@ class SalesDataCleaner:
 
             self.clean_building_state_column()
 
+            self.remove_duplicate_records()
+
             self.remove_na_records()
 
-            # # self.remove_duplicate_records()
+            self.sales_data.rename(columns={"kitchen_has": "equipped_kitchen_has"}, inplace=True)
 
             self.display()
 
@@ -229,8 +241,8 @@ class SalesDataCleaner:
     
     def clean_sale_column(self):
         to_be_deleted_filter = self.sales_data['sale'].str.contains('annuity', na=False)
-        
-        self.sales_data.loc[to_be_deleted_filter, 'sale'] = None
+        to_delete_index = self.sales_data.index[to_be_deleted_filter]
+        self.sales_data.drop(to_delete_index, axis='index', inplace = True)
     
     def clean_area_land_surface_columns(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.copy_from_land_surface, axis='columns')
@@ -240,19 +252,10 @@ class SalesDataCleaner:
         if row.area == 0.0 and row.land_surface > 0.0:
             row.area = row.land_surface
         return row
+
+    def remove_duplicate_records(self):
+        self.sales_data.drop_duplicates(subset=['postcode', 'house_is', 'price', 'area'], inplace=True)
+        
     
     def remove_na_records(self):
         self.sales_data.dropna(axis=0, inplace=True)
-
-    def remove_duplicate_records(self):
-        pass
-
-    def get_cleaned_data(self):
-        if self.cleaned:
-            return self.sales_data.copy()
-        else:
-            return None
-    
-    def write_to_csv(self, filepath):
-        if self.cleaned:
-            self.sales_data.to_csv(filepath, index=False)
