@@ -8,17 +8,58 @@ A complete analysis and interpretation of the dataset need to be provided.
 - Be able to establish conclusions about a dataset. 
 
 ## Features 
-The dataset holds the following information.
+Hereby follow the project requirements divided by section. Results will need to be presented through Matplotlib/Seaborn.
 
-Everything in a csv file.
+Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
 
-## Highlights
-TBD
-- Data for all of Belgium.
-- Minimum 10 000 inputs
-- No empty row. If information is missing, the value is set to None.
-- No duplicates. 
-- Binary values replacing "Yes" or "Not" 
+### Providing a cleaned dataset
+- No duplicates
+- No blank spaces (ex: ``" I love python  "`` =>  ``"I love python"``)
+- No errors
+- No empty values
+
+### Data analysing questions 
+- Which variable is the target ?
+- How many rows and columns ?
+- What is the correlation between variable/target ? (Why?)
+- What is the correlation between the variables/variables ? (Why?)
+- Which variables have the greatest influence on the target ?
+- Which variables have the least influence on the target ?
+- How many qualitative and quantitative variable is there ? How would you transform these values into numerical values ? 
+- Percentage of missing values per column ?
+
+### Data interpretation questions (<ins>non-exhaustive</ins> list)
+- Are there any outliers? If yes, which ones and why?
+- Which variables would you delete and why ?
+- In your opinion, which 5 variables are the most important and why?
+- What are the most expensive municipalities in Belgium? (Average price, median price, price per square meter)
+- What are the most expensive municipalities in Wallonia? (Average price, median price, price per square meter)
+- What are the most expensive municipalities in Flanders? (Average price, median price, price per square meter)
+- What are the less expensive municipalities in Belgium? (Average price, median price, price per square meter)
+- What are the less expensive municipalities in Wallonia? (Average price, median price, price per square meter)
+- What are the less expensive municipalities in Flanders? (Average price, median price, price per square meter)
+
+### Presentation (26/10/20) characteristics
+- professional design
+- 5 minutes long
+- participation of each team member
+- no showing of code or jupyter notebook
+
+### Readme characteristics
+	- What, Why, When, How, Who.
+	- Pending things to do
+  
+### Evaluation criteria summary
+Hereby follow the criteria to be comply with
+| Criteria       | Indicator                                                                             | Yes/No |
+|----------------|---------------------------------------------------------------------------------------|--------|
+| 1. Is complete | Know how to answer all the above questions.                                           |        |
+|                | Use pandas and matplotlib/seaborn.                                                    |        |
+|                | Pimp up the readme. (what,why, how, who)                                              |        |
+|                | Present the results                               			                         |        |
+| 2. Is good     | The repo doesn't contains unnecessary files.                   			             |        |
+|                | You used typing.                                                			             |        |
+|                | The presentation is clean.                                   			             |        |  
 
 # Who did the project (Who):
 Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON), Saba Yahyaa (SY)
