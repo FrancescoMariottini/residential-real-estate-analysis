@@ -11,8 +11,8 @@ class SalesDataCleaner:
     
     def clean(self):
         if not self.cleaned:
-            # print(self.sales_data.dtypes)
-
+            print(self.sales_data.dtypes)
+            
             self.import_and_format()
 
             self.delete_hyperlink_column()
@@ -27,7 +27,7 @@ class SalesDataCleaner:
 
             self.clean_property_subtype_column()
 
-            # self.clean_price_column()
+            self.clean_price_column()
 
             self.clean_sale_column()
 
@@ -61,7 +61,7 @@ class SalesDataCleaner:
 
             self.remove_na_records()
 
-            # self.remove_duplicate_records()
+            # # self.remove_duplicate_records()
 
             self.display()
 
@@ -83,26 +83,40 @@ class SalesDataCleaner:
             'land_surface':         float,
             'facades_number':       float, #changed to float to deal with None
             'building_state':       str,
-            # 'price':                int
         }
 
         columns_converters = {
             #read_csv has issue with None in Boolean (interpreted as object). I am using "kitchen_has": lambda x: bool(x) if type(x) is bool else Non
-            'kitchen_has': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'furnished': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'open_fire': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'terrace': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'garden': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'swimming_pool_has': lambda x: SalesDataCleaner.bool_or_keep(x),
-            'terrace_area': lambda x: SalesDataCleaner.float_or_zero(x),
-            'land_plot_surface': lambda x: SalesDataCleaner.float_or_text_to_nan(x),
-            'area': lambda x: SalesDataCleaner.area_remove_m2(x)
+            'kitchen_has':          lambda x: SalesDataCleaner.bool_or_keep(x),
+            'furnished':            lambda x: SalesDataCleaner.bool_or_keep(x),
+            'open_fire':            lambda x: SalesDataCleaner.bool_or_keep(x),
+            'terrace':              lambda x: SalesDataCleaner.bool_or_keep(x),
+            'garden':               lambda x: SalesDataCleaner.bool_or_keep(x),
+            'swimming_pool_has':    lambda x: SalesDataCleaner.bool_or_keep(x),
+            'terrace_area':         lambda x: SalesDataCleaner.float_or_zero(x),
+            'land_plot_surface':    lambda x: SalesDataCleaner.float_or_text_to_nan(x),
+            'area':                 lambda x: SalesDataCleaner.area_remove_m2(x),
+            'price':                lambda x: SalesDataCleaner.price_converter(x)
         }
 
         columns = columns_types.keys()
         na_identifiers = ['NA', 'None', 'Not specified', 'NaN', 'NAN']
 
         self.sales_data = pd.read_csv(self.url,  sep=",", dtype=columns_types, skipinitialspace=True, converters=columns_converters, na_values=na_identifiers, low_memory=False)
+
+    @staticmethod
+    def price_converter(x):
+        #removing non-digit heading and trailiong characters
+        x = re.sub(r'\D+$', '', re.sub(r'^\D+', '', x))
+        #removing trailing non-digit and dot characters until the last '€' character
+        x = re.sub(r'€(.|\D)*$', '', x)
+        x = x.replace(',', '')
+        #we expect only digits or a dot after replacing commas with an empty string, so we should be able to convert if
+        #if not possible we catch the exception
+        try:
+            return float(x)
+        except ValueError:
+            return None
 
     @staticmethod
     def bool_or_keep(x):
@@ -167,9 +181,6 @@ class SalesDataCleaner:
 
     def delete_sale_column(self):
         self.sales_data.drop('sale', axis='columns', inplace=True)
-    
-    # def add_to_delete_column(self):
-    #     self.sales_data = self.sales_data.assign(to_delete=False)
 
     def merge_postcodes_localities_columns(self):
         self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
@@ -362,7 +373,6 @@ class SalesDataCleaner:
     
     def remove_na_records(self):
         self.sales_data.dropna(axis=0, inplace=True)
-        # self.sales_data.drop(self.sales_data.index[self.sales_data.to_delete], inplace=True)
 
     def remove_duplicate_records(self):
         pass
