@@ -8,17 +8,19 @@ A complete analysis and interpretation of the dataset need to be provided.
 - Be able to establish conclusions about a dataset. 
 
 ## Features 
-Hereby follow the project requirements divided by section. Results will need to be presented through Matplotlib/Seaborn.
+Hereby follow the project results by section. The related presentation, including graphs obtained through Matplotlib/Seaborn is available here.
 
 Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
 
-### Providing a cleaned dataset
-- No duplicates
-- No blank spaces (ex: ``" I love python  "`` =>  ``"I love python"``)
-- No errors
-- No empty values
+### A cleaned dataset
+The provided dataset (available here) is cleaned of:
+- duplicates
+- blank spaces (ex: ``" I love python  "`` =>  ``"I love python"``)
+- errors
+- empty values
 
-### Data analysing questions 
+### Data analysis overview (QUESTIONS TO BE REPLACED WITH ANSWERS)
+Hereby follow the main results from the preliminary data analysis:
 - Which variable is the target ?
 - How many rows and columns ?
 - What is the correlation between variable/target ? (Why?)
@@ -28,7 +30,8 @@ Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
 - How many qualitative and quantitative variable is there ? How would you transform these values into numerical values ? 
 - Percentage of missing values per column ?
 
-### Data interpretation questions (<ins>non-exhaustive</ins> list)
+### Data interpretation questions (<ins>non-exhaustive</ins> list)(QUESTIONS TO BE REPLACED WITH ANSWERS)
+Hereby follow the main results from the data interpretation:
 - Are there any outliers? If yes, which ones and why?
 - Which variables would you delete and why ?
 - In your opinion, which 5 variables are the most important and why?
@@ -39,27 +42,11 @@ Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
 - What are the less expensive municipalities in Wallonia? (Average price, median price, price per square meter)
 - What are the less expensive municipalities in Flanders? (Average price, median price, price per square meter)
 
-### Presentation (26/10/20) characteristics
-- professional design
-- 5 minutes long
-- participation of each team member
-- no showing of code or jupyter notebook
+### Presentation (26/10/20) 
+Presentation is available here.
 
-### Readme characteristics
-- What, Why, When, How, Who.
-- Pending things to do
-  
-### Evaluation criteria summary
-Hereby follow the criteria to be comply with
-| Criteria       | Indicator                                                                             | Yes/No |
-|----------------|---------------------------------------------------------------------------------------|--------|
-| 1. Is complete | Know how to answer all the above questions.                                           |        |
-|                | Use pandas and matplotlib/seaborn.                                                    |        |
-|                | Pimp up the readme. (what,why, how, who)                                              |        |
-|                | Present the results                               			                         |        |
-| 2. Is good     | The repo doesn't contains unnecessary files.                   			             |        |
-|                | You used typing.                                                			             |        |
-|                | The presentation is clean.                                   			             |        |  
+SY prepared the first draft of the presentation and the template. It was agreed to have 1 or 2 slides per person to kept the total presentation time within 5 minutes. No code was included in the presentation.
+
 
 # Who did the project (Who):
 Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON), Saba Yahyaa (SY)
@@ -108,6 +95,12 @@ Surface area of the plot of land|land_plot_surface|int|
 Number of facades|facades_number|int|
 Swimming pool (Yes/No)|swimming_pool_has|bool|
 State of the building|building_state|str|(New, to be renovated, ...)
+
+## Data interpretation
+
+
+# Future improvements 
+TBD
 
 # Take over
 1. Excel may be an effective solution on a single table analysis but joining different tables through pandas could be more effective.
