@@ -6,3 +6,5 @@ url = 'https://raw.githubusercontent.com/FrancescoMariottini/project3/main/input
 sdc = SalesDataCleaner(url)
 
 sdc.clean()
+
+sdc.write_to_csv('aaaa.csv')
