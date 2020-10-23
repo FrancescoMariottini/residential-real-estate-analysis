@@ -11,25 +11,27 @@ class SalesDataCleaner:
     
     def clean(self):
         if not self.cleaned:
-            print(self.sales_data.dtypes)
+            # print(self.sales_data.dtypes)
 
             self.import_and_format()
 
-            self.add_to_delete_column()
-
             self.delete_hyperlink_column()
+
+            self.delete_land_plot_surface_column()
 
             self.merge_postcodes_localities_columns()
 
             self.add_region_column()
 
-            self.clean_house_is_column()
+            self.clean_house_column()
 
             self.clean_property_subtype_column()
 
-            self.clean_price_column()
+            # self.clean_price_column()
 
             self.clean_sale_column()
+
+            self.delete_sale_column()
 
             self.clean_rooms_number_column()
 
@@ -51,8 +53,6 @@ class SalesDataCleaner:
 
             self.clean_land_surface_column()
 
-            self.delete_land_plot_surface_column()
-
             self.clean_facades_number_column()
 
             self.clean_swimming_pool_column()
@@ -61,7 +61,7 @@ class SalesDataCleaner:
 
             self.remove_na_records()
 
-            self.remove_duplicate_records()
+            # self.remove_duplicate_records()
 
             self.display()
 
@@ -164,9 +164,16 @@ class SalesDataCleaner:
 
     def delete_land_plot_surface_column(self):
         self.sales_data.drop('land_plot_surface', axis='columns', inplace=True)
+
+    def delete_sale_column(self):
+        self.sales_data.drop('sale', axis='columns', inplace=True)
     
-    def add_to_delete_column(self):
-        self.sales_data = self.sales_data.assign(to_delete=False)
+    # def add_to_delete_column(self):
+    #     self.sales_data = self.sales_data.assign(to_delete=False)
+
+    def merge_postcodes_localities_columns(self):
+        self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
+        self.sales_data.drop('locality', axis='columns', inplace=True)
 
     @staticmethod
     def extract_postcodes(row):
@@ -177,9 +184,12 @@ class SalesDataCleaner:
                 row.postcode = extracted_postcodes[0]
             else:
                 row.postcode = None
-        else:
-            row.postcode = row.postcode
+        # else:
+        #     row.postcode = row.postcode
         return row
+
+    def add_region_column(self):
+        self.sales_data['region'] = self.sales_data['postcode'].map(SalesDataCleaner.to_region)
     
     @staticmethod
     def to_region(postcode):
@@ -198,16 +208,6 @@ class SalesDataCleaner:
             else:
                 region = 'F'
         return region
-
-    def merge_postcodes_localities_columns(self):
-        self.sales_data = self.sales_data.apply(SalesDataCleaner.extract_postcodes, axis='columns')
-        self.sales_data.drop('locality', axis='columns', inplace=True)
-
-    def add_region_column(self):
-        self.sales_data['region'] = self.sales_data['postcode'].map(SalesDataCleaner.to_region)
-        # self.sales_data = self.sales_data.assign(self.sales_data['postcode'].map(SalesDataCleaner.to_region))
-        # self.sales_data = self.sales_data.assign(region = lambda x: SalesDataCleaner.to_region(x.postcode))
-        # self.sales_data = self.sales_data.assign(region = SalesDataCleaner.to_region(self.sales_data['postcode']))
 
     def clean_property_subtype_column(self):
         to_be_deleted_subtypes = ['Wohnung', 'Triplexwohnung', 'Sonstige', 'Loft / �tico', 'Loft / Dachgeschoss', 'Loft / Attic',
@@ -290,19 +290,19 @@ class SalesDataCleaner:
 ##############################################################################################
     def clean_terrace_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_terrace_area_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_garden_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_garden_area_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
         # to_be_deleted_filter = self.sales_data['garden_area'].apply(lambda x: pd.isna(x))
         # self.sales_data['garden_area'][to_be_deleted_filter] = None
 
@@ -316,7 +316,7 @@ class SalesDataCleaner:
     
     def clean_area_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
         # c = 0
         # for i,v in self.sales_data['area'].items():
         #     if pd.isna(v):
@@ -330,42 +330,42 @@ class SalesDataCleaner:
 
     def clean_facades_number_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
     
     def clean_rooms_number_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_land_surface_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_kitchen_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_furnished_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_open_fire_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
     def clean_swimming_pool_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
 
-    def clean_house_is_column(self):
+    def clean_house_column(self):
         #nothing to do: everything is taken care of by Francesco's "formatted import"
-        print()
+        pass
     
     def remove_na_records(self):
         self.sales_data.dropna(axis=0, inplace=True)
         # self.sales_data.drop(self.sales_data.index[self.sales_data.to_delete], inplace=True)
 
     def remove_duplicate_records(self):
-        print()
+        pass
 
     def get_cleaned_data(self):
         if self.cleaned:
