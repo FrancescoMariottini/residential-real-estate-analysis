@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/jo/anaconda3/bin/python"
+    "python.pythonPath": "/home/jo/anaconda3/bin/python",
+    "python.dataScience.jupyterServerURI": "local"
 }
