@@ -110,7 +110,7 @@ FM introduced the procedure of replacing non-realistic values in the column (e.g
 ON created 50+ data analysis charts that he decided himself to make rough comments on the data before cleaning and editing the data, and he presented it to the members of the team for review. So we decided the meaning of the data and what kind of graphs we could concentrate on. He also prepared 18 graphs in seaborn, which is the goal of the project. He also joined tasks such as data cleaning and grouping columns area , building_state and others mand so.
 
 # Future improvements 
-TBD
+Project is considered to be completed but it may be the basis for future projects.
 
 # Take over
 1. Excel may be an effective solution on a single table analysis but joining different tables through pandas could be more effective.
