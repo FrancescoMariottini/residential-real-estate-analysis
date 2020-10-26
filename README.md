@@ -1,6 +1,6 @@
 # Cleaning, preliminary analysis and interpretation of residential real estate sales in Belgium (What)
-The real estate company "ImmoEliza" wants to create a machine learning model to predict prices on Belgium's sales.
-A complete analysis and interpretation of the dataset need to be provided. 
+The real estate company "ImmoEliza" wanted to create a machine learning model to predict prices on Belgium's sales.
+A complete analysis and interpretation of the dataset was provided. 
 
 # The Mission (Why)
 - Be able to use pandas
