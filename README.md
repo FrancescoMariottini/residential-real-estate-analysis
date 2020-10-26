@@ -65,6 +65,7 @@ At least 2 person days were spent on technical teaching (and installation) and c
 
 ## Code merging (How)
 JK toke sole responsibility for merging the code in order to effectively implement code from different sources (git and jupyter files) and eventually reviewing the code if necessary. When running the data formatting and values cleaning tools (see later), FM provided feedback to JK to ensure the resulting cleaned dataset complied with the required specifications.
+Code merging was done inside a utility class named ```SalesDataCleaner``` that takes a path (or a URL) to a CSV file, loads it into a DataFrame then proceeds to clean it. Then a copy of the cleaned DataFrame is accessible with a public method for further jobs (such as visualization, data interpretation, learning algorithms)
 
 ## Data formatting and values cleaning (How)
 Data cleaning was splitted into two main groups: initial formatting for similar types of columns (FM) and additional specific formatting for particularly complex cleaning.
