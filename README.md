@@ -10,8 +10,6 @@ A complete analysis and interpretation of the dataset was provided.
 ## Features 
 Hereby follow the project results by section. The related presentation, including graphs obtained through Matplotlib/Seaborn is available here.
 
-Everything need to be updloaded <ins>non-exhaustive</ins> Friday 23/10/20.
-
 ### A cleaned dataset
 The provided dataset (available here) is cleaned of:
 - duplicates
@@ -54,17 +52,19 @@ Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON),
 # Development (How)
 
 ## Communication and Management
-Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person adding indipendently the labels and tasks as well as involving other team members on them. 
+Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person (mainly OH and FM) adding indipendently the labels and tasks as well as involving other team members on them. 
+FM provided code specifications or clarifications when requested (e.g. column identifiers to check duplicates) or strictly needed (e.g. percentiles for outliers identifications and replacement of not realistic values with nan).
 
 ## Merging datasets from different sources (How)
 Different independent teams worked on a merged dataset to be used by all the team.
 On the first day (21/10/20) CUDA team splitted the sources (group 5's data were excluded because they only scrapped a few features in project 1) as follows: JK worked on source 3 and 4, FM worked on source 1 and 7, ON worked on source 2, 3 and 6. Group 3 required collaboration. Additional cleaning work was carried on the 22/10/20 by JK to improve the merged dataset for all the teams.
+FM was also comparing the final dataframes from his team and Selma's team to verify which one was most fitted to be used.
 
 ## Pycharm & Github training (How)
 At least 2 person days were spent on technical teaching (and installation) and clarifications about pycharm (FM), git (FM, JK) and statistics (FM) to allow everybody to work on the project. Additional self-training was spent by SY on understanding and replicating the code already developed by the team.
 
 ## Code merging (How)
-JK toke sole responsibility for merging the code in order to effectively implement code from different sources (git and jupyter files) and eventually reviewing the code if necessary.
+JK toke sole responsibility for merging the code in order to effectively implement code from different sources (git and jupyter files) and eventually reviewing the code if necessary. When running the data formatting and values cleaning tools (see later), FM provided feedback to JK to ensure the resulting cleaned dataset complied with the required specifications.
 
 ## Data formatting and values cleaning (How)
 Data cleaning was splitted into two main groups: initial formatting for similar types of columns (FM) and additional specific formatting for particularly complex cleaning.
@@ -111,7 +111,7 @@ TBD
 - Repository: `challenge-data-analysis`
 - Type of Challenge: `Consolidation`
 - Duration: ``4 people * 3 days ` plus out of hours working
-- Deadline: `23/10/2020 17:00`
-- Presentation: `26/10/2020 9:00`
+- Deadline: `26/10/2020 14:00`(extended from `23/10/2020 17:00) 
+- Presentation: `26/10/2020 14:00`
 - Team challenge : 4
 
