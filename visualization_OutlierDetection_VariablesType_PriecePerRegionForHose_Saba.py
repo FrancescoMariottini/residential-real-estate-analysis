@@ -131,13 +131,13 @@ ax.title.set_text("Land_surface")
 
 ax = plt.subplot2grid((3,3), (1,0))
 terrace_area= sales_data['terrace_area']
-ax.boxplot(terrace_area[(terrace_area >=0 ) & (terrace_area <=97)])
+ax.boxplot(terrace_area[(terrace_area >=0 ) & (terrace_area < 97)])
 ax.xaxis.set_ticklabels([])
 ax.title.set_text('Terrace_area')
 
 ax = plt.subplot2grid((3,3), (1,1))
 price= sales_data['price']
-ax.boxplot( price[(price >= 2.500000e+04 ) & (price <= 2.195000e+06 )] ) #for drawing, I considered less than the min and greater
+ax.boxplot( price[(price >= 2.500000e+04 ) & (price <  2.195000e+06 )] ) #for drawing, I considered less than the min and greater
     # than the max is an outlier. The outlier is detecting using zscore.I remove them from the original data.
 plt.grid(False)
 ax.xaxis.set_ticklabels([])
@@ -145,7 +145,7 @@ ax.title.set_text('Price')
 
 ax = plt.subplot2grid((3,3), (1,2))
 room_number= sales_data['rooms_number']
-ax.boxplot( room_number[(room_number >= 0 ) & (room_number <= 14 )] ) #for drawing, I considered less than the min and greater
+ax.boxplot( room_number[(room_number >= 0 ) & (room_number < 50 )] ) #for drawing, I considered less than the min and greater
 #ax.hist(sales_data['rooms_number'].astype(int), bins = [0,1,2,3,4,5,6,7,8,9,10,11, 12, 13,14,15], rwidth=0.95)
 plt.title('Rooms_number')
 ax.xaxis.set_ticklabels([])
