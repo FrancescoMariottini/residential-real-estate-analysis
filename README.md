@@ -97,7 +97,7 @@ Swimming pool (Yes/No)|swimming_pool_has|bool|
 State of the building|building_state|str|(New, to be renovated, ...)
 
 ## Data interpretation
-JK took charge of creating categorical data bins from the 'area' property. Upon inspection of the distribution of instances for each possible area, the group has decided to use the following bins in order to have a similar number of instances per bin: [0-60 m²], [60-90 m²], [90-120 m²], [120-180 m²], [180-250 m²] and [250+ m²].
+JK took charge of creating categorical data bins from the 'area' property. Upon inspection of the distribution of instances for each possible area, the group has decided to use the following bins in order to have a similar number of instances per bin: [0-60 m²], [60-90 m²], [90-120 m²], [120-180 m²], [180-250 m²] and [250 m² and more].
 As we expected, in each categorical bin, Brussels was the most expensive, followed by Flanders than Wallonia, in terms of mean but also in therm of median wich is a more interesting measure considering the outlier price we have in this dataset.
 It should also be noted that the proportionality between each region in each data bin seemed to be approximately respected.
 
