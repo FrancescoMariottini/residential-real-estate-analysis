@@ -102,6 +102,9 @@ JK took charge of creating categorical data bins from the 'area' property. Upon 
 As we expected, in each categorical bin, Brussels was the most expensive, followed by Flanders then Wallonia, in terms of mean but also in therm of median wich is a more interesting measure considering the outlier price we have in this dataset.
 It should also be noted that the proportionality between each region in each data bin seemed to be approximately respected.
 
+SY visualizes the percentage of missing values in each column alone and percentage of missing values in total.
+SY visualizes the qualitative and quantitative features and checked the outliers in the quantitative feature using zscore. SY visualizes the quantitative features after deleting some outliers. SY fills the nan values of the area and price with their mean to fill the empty cells. SY creates violinplot to have fast visualize that Brussels is the most expensive in house compared to others.
+
 # Future improvements 
 TBD
 
