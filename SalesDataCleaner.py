@@ -62,6 +62,7 @@ class SalesDataCleaner:
     
 
     def import_and_format(self):
+        #dtypes are assigned for the columns which won't require additional manipulations
         columns_types = {
             'source':               int,
             'hyperlink':            str,
@@ -77,6 +78,7 @@ class SalesDataCleaner:
             'building_state':       str,
         }
 
+        #transformation functions are assigned for columns which will require additional manipulations
         columns_converters = {
             #read_csv has issue with None in Boolean (interpreted as object). I am using "kitchen_has": lambda x: bool(x) if type(x) is bool else Non
             'kitchen_has':          lambda x: SalesDataCleaner.bool_or_keep(x),
@@ -92,8 +94,9 @@ class SalesDataCleaner:
         }
 
         columns = columns_types.keys()
+        # Null string identifiers (discovered iteratively while improving the process) are defined to be replaced by na
         na_identifiers = ['NA', 'None', 'Not specified', 'NaN', 'NAN']
-
+        # The dataset is read while performing at the same time some basic manipulations
         self.sales_data = pd.read_csv(self.url,  sep=",", dtype=columns_types, skipinitialspace=True, converters=columns_converters, na_values=na_identifiers, low_memory=False)
 
     @staticmethod
@@ -111,6 +114,7 @@ class SalesDataCleaner:
             return None
 
     @staticmethod
+    #expected boolean are transformed into bool even if originally were strings or numbers
     def bool_or_keep(x):
         output = None
         try:
@@ -131,6 +135,7 @@ class SalesDataCleaner:
             return None
 
     @staticmethod
+    # expected float values are converted into float even if originally were wrongly coded as boolean or number
     def float_or_zero(x):
         try:
             float(x)
@@ -143,13 +148,17 @@ class SalesDataCleaner:
                 return None
     
     @staticmethod
+    #expected float values are returned as None
     def float_or_text_to_nan(x):
         try:
             return float(x)
+        #generic value error instead of isistance(x,str) to cover more cases instead of strings only.
         except ValueError:
             return None
 
     @staticmethod
+    #a single integer number is extracted from area to remove the m2 measurement units.
+    #this simple method was adopted since no commas were found in area field.
     def area_remove_m2(x):
         try:
             return int(x)
