@@ -8,7 +8,7 @@ A complete analysis and interpretation of the dataset was provided.
 - Be able to establish conclusions about a dataset. 
 
 ## Features 
-Hereby follow the project results by section. The related presentation, including graphs obtained through Matplotlib/Seaborn is available here.
+Hereby follow the project results by section. The related presentation, including graphs obtained through Matplotlib/Seaborn is available [here](https://github.com/FrancescoMariottini/residential-real-estate-analysis/blob/main/project3.pptx).
 
 ### A cleaned dataset
 The provided dataset (available here) is cleaned of:
@@ -52,7 +52,7 @@ Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON),
 # Development (How)
 
 ## Communication and Management
-Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person (mainly ON and FM) adding indipendently the labels and tasks as well as involving other team members on them. 
+Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello (available [here](https://trello.com/b/gtM8bCin/randomforest-progress)) with each person (mainly ON and FM) adding indipendently the labels and tasks as well as involving other team members on them. 
 FM provided code specifications or clarifications when requested (e.g. column identifiers to check duplicates) or strictly needed (e.g. percentiles for outliers identifications and replacement of not realistic values with nan).
 
 ## Merging datasets from different sources (How)
@@ -104,6 +104,8 @@ It should also be noted that the proportionality between each region in each dat
 
 SY visualizes the percentage of missing values in each column alone and percentage of missing values in total.
 SY visualizes the qualitative and quantitative features and checked the outliers in the quantitative feature using zscore. SY visualizes the quantitative features after deleting some outliers. SY fills the nan values of the area and price with their mean to fill the empty cells. SY creates violinplot to have fast visualize that Brussels is the most expensive in house compared to others.
+
+FM introduced the procedure of replacing non-realistic values in the column (e.g. zero surface area) with np.nan values and implemented filters on all the numerical tables showing a pattern close to normal distribution (and not an excessive concentration of values towards higher values). Outliers analysis was distinguished by apartments and houses. Median price by postcode and by building status were introduced to deal with the correspondent non-numerical values. An online Google survey (available [here](https://docs.google.com/forms/d/1zLxgbiZQcPLo6fb5cEHZEC_Oye6vH9rCubEPmQZ-Fhk/edit?gxids=7628#responses)) was also carried on to be compared with found correlation.
 
 ON created 50+ data analysis charts that he decided himself to make rough comments on the data before cleaning and editing the data, and he presented it to the members of the team for review. So we decided the meaning of the data and what kind of graphs we could concentrate on. He also prepared 18 graphs in seaborn, which is the goal of the project. He also joined tasks such as data cleaning and grouping columns area , building_state and others mand so.
 
