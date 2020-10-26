@@ -3,6 +3,8 @@ import numpy as np
 import re
  
 class SalesDataCleaner:
+    """ Utility class that cleans real estate sale offers data from a CSV file into a pandas DataFrame for further work on it"""
+    
     def __init__(self, url):
         self.url = url
         self.sales_data = None
