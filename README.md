@@ -52,7 +52,7 @@ Contributors : Joachim Kotek (JK), Francesco Mariottini (FM), Orhan Nurkan (ON),
 # Development (How)
 
 ## Communication and Management
-Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person (mainly OH and FM) adding indipendently the labels and tasks as well as involving other team members on them. 
+Communication went mainly through live discussion on-site and, to a smaller extent, on Discord. Project management was mainly carried on Trello with each person (mainly ON and FM) adding indipendently the labels and tasks as well as involving other team members on them. 
 FM provided code specifications or clarifications when requested (e.g. column identifiers to check duplicates) or strictly needed (e.g. percentiles for outliers identifications and replacement of not realistic values with nan).
 
 ## Merging datasets from different sources (How)
