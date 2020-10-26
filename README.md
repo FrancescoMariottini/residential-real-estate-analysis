@@ -105,6 +105,8 @@ It should also be noted that the proportionality between each region in each dat
 SY visualizes the percentage of missing values in each column alone and percentage of missing values in total.
 SY visualizes the qualitative and quantitative features and checked the outliers in the quantitative feature using zscore. SY visualizes the quantitative features after deleting some outliers. SY fills the nan values of the area and price with their mean to fill the empty cells. SY creates violinplot to have fast visualize that Brussels is the most expensive in house compared to others.
 
+ON created 50+ data analysis charts that he decided himself to make rough comments on the data before cleaning and editing the data, and he presented it to the members of the team for review. So we decided the meaning of the data and what kind of graphs we could concentrate on. He also prepared 18 graphs in seaborn, which is the goal of the project. He also joined tasks such as data cleaning and grouping columns area , building_state and others mand so.
+
 # Future improvements 
 TBD
 
