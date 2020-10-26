@@ -3,6 +3,8 @@ import numpy as np
 import re
  
 class SalesDataCleaner:
+    """ Utility class that cleans real estate sale offers data from a CSV file into a pandas DataFrame for further work on it"""
+    
     def __init__(self, url):
         self.url = url
         self.sales_data = None
@@ -23,7 +25,7 @@ class SalesDataCleaner:
             
             self.import_and_format()
 
-            print(self.sales_data.dtypes)
+            # print(self.sales_data.dtypes)
 
             self.delete_hyperlink_column()
 
@@ -55,7 +57,7 @@ class SalesDataCleaner:
 
             self.clean_facades_number_column()
 
-            self.display()
+            # self.display()
 
             #now that the cleaning is done we update the corresponding binary tag
             self.cleaned = True
@@ -71,11 +73,11 @@ class SalesDataCleaner:
             'house_is':             bool,
             'property_subtype':     str,
             'sale':                 str,
-            'rooms_number':         float, #cannot convert float NaN to integer
-            'garden_area':          float, #ValueError: Integer column has NA values in column 16
+            'rooms_number':         float,
+            'garden_area':          float,
             'land_surface':         float,
-            'facades_number':       float, #changed to float to deal with None
-            'building_state':       str,
+            'facades_number':       float,
+            'building_state':       str
         }
 
         #transformation functions are assigned for columns which will require additional manipulations

@@ -1,3 +1,5 @@
+#an example use of the SalesDataCleaner class to write to another CSV file the cleaned DataFrame obtained from an original CSV file
+
 from SalesDataCleaner import SalesDataCleaner
 
 
