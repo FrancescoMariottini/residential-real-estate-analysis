@@ -111,7 +111,7 @@ TBD
 - Repository: `challenge-data-analysis`
 - Type of Challenge: `Consolidation`
 - Duration: ``4 people * 3 days ` plus out of hours working
-- Deadline: `26/10/2020 14:00`(extended from `23/10/2020 17:00) 
+- Deadline: `26/10/2020 14:00`(extended from `23/10/2020 17:00`) 
 - Presentation: `26/10/2020 14:00`
 - Team challenge : 4
 
