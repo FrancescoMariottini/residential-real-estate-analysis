@@ -1,4 +1,4 @@
-# "Cleaning, preliminary analysis and interpretation of real estate sales in Belgium" (What)
+# Cleaning, preliminary analysis and interpretation of residential real estate sales in Belgium (What)
 The real estate company "ImmoEliza" wants to create a machine learning model to predict prices on Belgium's sales.
 A complete analysis and interpretation of the dataset need to be provided. 
 
